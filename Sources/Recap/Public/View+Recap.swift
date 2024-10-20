@@ -37,6 +37,11 @@ public extension View {
     func recapScreenIconFillMode(_ style: IconFillMode) -> some View {
         self.environment(\.recapScreenIconFillMode, style)
     }
+    
+    /// Configures the vertical alignment of item icons relative to the text.
+    func recapScreenIconAlignment(_ alignment: VerticalAlignment) -> some View {
+        self.environment(\.recapScreenIconAlignment, alignment)
+    }
 
     /// Configures the `selected` and `deselected` state page indicator colors displayed on the `RecapScreen`.
     func recapScreenPageIndicatorColors(selected: Color, deselected: Color) -> some View {
@@ -162,6 +167,17 @@ internal extension EnvironmentValues {
 
     private struct IconFillModeKey: EnvironmentKey {
         static let defaultValue = IconFillMode.solid
+    }
+
+    // MARK: IconVerticalAlignment
+
+    var recapScreenIconAlignment: VerticalAlignment {
+        get { self[IconVerticalAlignmentKey.self] }
+        set { self[IconVerticalAlignmentKey.self] = newValue }
+    }
+
+    private struct IconVerticalAlignmentKey: EnvironmentKey {
+        static let defaultValue = VerticalAlignment.center
     }
 
     // MARK: PaddingKey
